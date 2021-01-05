@@ -1,9 +1,13 @@
 class profile::agent_nodes {
   include dockeragent
-  dockeragent::node {'web.puppet.vm':
-    include profile::ssh_server
+  dockeragent::node {'web.puppet.vm': }
+  dockeragent::node {'db.puppet.vm': }
+  host {'web.puppet.vm':
+    ensure => present,
+    ip     => '172.18.0.2',
   }
-  dockeragent::node {'db.puppet.vm':
-    include profile::ssh_server
+  host {'db.puppet.vm':
+    ensure => present,
+    ip     => '172.18.0.3',
   }
 }
